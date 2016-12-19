@@ -20,7 +20,7 @@ Development
 
 - Take a look at our [Contributing](CONTRIBUTING.md) guidelines
 
-- Clone the repo: `git clone git@github.com:Adslot/adslot-ui.git`
+- Clone the repo: `git clone https://github.com/Baniel/Daniel-Zhang-Test.git`
 
 
 
