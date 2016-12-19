@@ -14,10 +14,8 @@ import { FormGroup, FormControl, Glyphicon, Row, Col } from 'react-bootstrap';
 **
 */
 
-
 //MainBody Componment
 var SearchBox = React.createClass({
-
 
   getInitialState: function () {
     return {
@@ -28,10 +26,6 @@ var SearchBox = React.createClass({
       categoriesLists: [],
     }
   },
-
-
-
-
 
   /*
   ** Due to I don't filimar how to use JavaScript (I just only know Python and Java) to wrtite Data Structure,
@@ -44,17 +38,16 @@ var SearchBox = React.createClass({
     let searchArray = [];
     let sameIds = [];
 
-
-
-
-
-    // Get the User Input
+    /*
+    **  Get the User Input :
+    **  1. Without Commas
+    **  2. With Commas
+    */ 
     if (userInput !== "") {
 
+      // When user input with Commas
       if (userInput.includes(',')) {
         searchArray = userInput.split(',');
-        console.log("I am many");
-
         this.props.initialCategories.forEach(function (Category) {
 
           if (Category.description.includes('&')) {
@@ -80,7 +73,7 @@ var SearchBox = React.createClass({
         });
 
          sameIds.length !== 0 ?
-
+         // Search websites by Category
           this.props.initialSites.forEach(function (site) {
 
             for (let id of sameIds) {
@@ -92,13 +85,14 @@ var SearchBox = React.createClass({
 
           })
         :
+        // Search sebsites by Keywords 
         this.props.initialSites.forEach(function (site) {
           for (let search of searchArray) {
             if (search !== "") {
               if (site.siteName.toLowerCase().match(search.toLowerCase()) || site.siteUrl.toLowerCase().match(search.toLowerCase())) {
 
                 /*
-                ** Delete Repeat Elements
+                ** Delete Repeat websites
                 */
                 sameNames.push(site.siteName);
                 sameNames = Array.from(new Set(sameNames));
@@ -116,8 +110,7 @@ var SearchBox = React.createClass({
 
       } else {
 
-        // When input without Commas
-        console.log("I am single");
+        // When user input without Commas
 
         this.props.initialCategories.forEach(function (Category) {
 
@@ -141,6 +134,8 @@ var SearchBox = React.createClass({
         });
 
         sameIds.length !== 0 ?
+
+        // Search by Categories
           this.props.initialSites.forEach(function (site) {
 
             for (let id of sameIds) {
@@ -151,8 +146,9 @@ var SearchBox = React.createClass({
             }
 
           })
-          // console.log("daniel")
+        
           :
+          // Search by Keywords of websites
           this.props.initialSites.forEach(function (site) {
             if (site.siteName.toLowerCase().match(userInput.toLowerCase()) || site.siteUrl.toLowerCase().match(userInput.toLowerCase())) {
               sameNames.push(site.siteName);
